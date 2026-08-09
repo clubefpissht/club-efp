@@ -1,0 +1,97 @@
+/* ============================================================
+   CLUB EFP — THEME (clair/sombre) + LANGUE (FR/EN/AR) — WIDGET
+   Ce fichier est partagé par toutes les pages du site.
+   ============================================================ */
+
+html[data-theme="light"] { color-scheme: light; }
+html[data-theme="dark"]  { color-scheme: dark; }
+
+/* ---------- Logo clair/sombre ---------- */
+.logo-img { display: block; }
+html[data-theme="light"] .logo-img.logo-dark { display: none; }
+html[data-theme="dark"] .logo-img.logo-light { display: none; }
+
+/* ---------- Contrôles nav : langue + thème ---------- */
+.ctrl-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--surface-1);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 2px;
+}
+.lang-btn {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-family: 'Cairo', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  padding: 5px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.lang-btn:hover { color: var(--text-strong); }
+.lang-btn.on { background: var(--r); color: #fff; }
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border2);
+  background: var(--surface-1);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .2s;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { color: var(--text-strong); border-color: var(--border); }
+
+@media (max-width: 860px) {
+  .lang-btn { padding: 4px 7px; font-size: 10.5px; }
+  .theme-toggle { width: 30px; height: 30px; }
+}
+@media (max-width: 700px) {
+  .srch-wrap { display: none; } /* la recherche cède la place aux contrôles sur petit écran */
+}
+
+/* ---------- Support RTL (arabe) ---------- */
+html[dir="rtl"] .nav-links { direction: rtl; }
+html[dir="rtl"] .dropdown-menu { left: auto; right: 0; text-align: right; }
+html[dir="rtl"] #sres { right: auto; left: 0; text-align: right; }
+html[dir="rtl"] .footer-links,
+html[dir="rtl"] .hero-btns,
+html[dir="rtl"] .filters,
+html[dir="rtl"] .social-links,
+html[dir="rtl"] .info-cards,
+html[dir="rtl"] .pills { direction: rtl; }
+html[dir="rtl"] .sidebar a .left { flex-direction: row-reverse; }
+html[dir="rtl"] .stage-header,
+html[dir="rtl"] .spec-header,
+html[dir="rtl"] .info-card,
+html[dir="rtl"] .book-footer,
+html[dir="rtl"] .ter-card-top,
+html[dir="rtl"] .ter-footer,
+html[dir="rtl"] .faq-q,
+html[dir="rtl"] .stage-info-row,
+html[dir="rtl"] .form-row,
+html[dir="rtl"] .layout { direction: rtl; }
+html[dir="rtl"] .obj-list li { flex-direction: row-reverse; text-align: right; }
+html[dir="rtl"] .hero-ar,
+html[dir="rtl"] .footer-ar { direction: rtl; }
+html[dir="rtl"] .eyebrow,
+html[dir="rtl"] .sec-label { direction: rtl; }
