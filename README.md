@@ -141,6 +141,25 @@ puis ouvre `http://localhost:8000` dans le navigateur.
 
 ---
 
+6bis. Modifier l'assistant chatbot
+
+Une petite bulle de chat apparaît en bas à droite du site. C'est un assistant simple à base de mots-clés (pas une vraie IA type ChatGPT — ça reste gratuit et fonctionne sans compte externe).
+
+Pour ajouter une nouvelle question/réponse : ouvre chatbot.js, trouve le tableau KB en haut, copie un bloc et modifie-le :
+
+js
+{
+  keywords: ["mot1", "mot2", "synonyme"],   // mots qui déclenchent cette réponse
+  answer: {
+    fr: "Réponse en français",
+    en: "Answer in English",
+    ar: "الجواب بالعربية",
+  },
+  link: { url: "contact.html", label: { fr: "Nous contacter", en: "Contact us", ar: "اتصل بنا" } }  // optionnel
+},
+
+Si tu veux un jour un vrai chatbot IA (qui comprend n'importe quelle question comme ChatGPT), il faudra passer par un service externe payant/à quota (ex: ChatbotGen, Voiceflow) car GitHub Pages ne permet pas d'héberger une clé API en sécurité — demande à l'IA qui reprend ce projet de t'aider à le brancher le moment venu.
+
 ## 9. Besoin d'aide ?
 
 Toute IA (Claude, ChatGPT...) peut relire ce projet et t'aider si tu lui montres ce README + les fichiers du dossier. La structure a été pensée pour rester simple à reprendre sans compétences techniques poussées.
