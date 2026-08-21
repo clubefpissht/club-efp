@@ -159,6 +159,7 @@
       </div>
     </div>
     <a href="stages.html" data-i18n="nav.stages">Lieux de stage</a>
+    <a href="evenements.html" data-i18n="nav.evenements">Événements</a>
     <a href="contact.html" class="active" data-i18n="nav.contact">Contact</a>
   </div>
   <div class="srch-wrap">
@@ -315,6 +316,7 @@
     <a href="a-propos.html" data-i18n="nav.apropos">À propos</a>
     <a href="bibliotheque.html" data-i18n="footer.bibliotheque">Bibliothèque</a>
     <a href="stages.html" data-i18n="nav.stages">Lieux de stage</a>
+    <a href="evenements.html" data-i18n="nav.evenements">Événements</a>
     <a href="contact.html" data-i18n="nav.contact">Contact</a>
   </div>
   <p class="footer-copy"><span data-i18n="footer.copyshort">© 2025 Club EFP · Empreinte des Futurs Psychologues</span></p>
@@ -328,15 +330,54 @@
     document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
     if (!isOpen) { ans.classList.add('open'); el.classList.add('open'); }
   }
+  const WEB3FORMS_ACCESS_KEY = "db1f4f1b-9d05-4d14-800a-1f2f37257f72";
+
   function submitForm() {
     const t = window.efpT || (k => k);
+    const btn = document.querySelector('.btn-submit');
     const prenom = document.getElementById('prenom').value.trim();
+    const nom = document.getElementById('nom').value.trim();
     const email = document.getElementById('email').value.trim();
+    const niveau = document.getElementById('niveau').value;
+    const objet = document.getElementById('objet').value;
     const message = document.getElementById('message').value.trim();
+
     if (!prenom || !email || !message) { alert(t('contact.alertMissing')); return; }
-    document.getElementById('successMsg').style.display = 'block';
-    document.querySelectorAll('input, textarea, select').forEach(el => el.value = '');
-    setTimeout(() => document.getElementById('successMsg').style.display = 'none', 5000);
+
+    const originalBtnHTML = btn.innerHTML;
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    btn.innerHTML = '<i class="ti ti-loader-2" aria-hidden="true"></i> ...';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: 'Club EFP — ' + (objet || 'Nouveau message du site'),
+        from_name: 'Site Club EFP',
+        prenom, nom, email, niveau, objet, message,
+      }),
+    })
+      .then(r => r.json())
+      .then(data => {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.innerHTML = originalBtnHTML;
+        if (data.success) {
+          document.getElementById('successMsg').style.display = 'block';
+          document.querySelectorAll('input, textarea, select').forEach(el => el.value = '');
+          setTimeout(() => document.getElementById('successMsg').style.display = 'none', 6000);
+        } else {
+          alert("Erreur lors de l'envoi. Réessaie, ou écris-nous directement à clubefp.issht@gmail.com.");
+        }
+      })
+      .catch(() => {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.innerHTML = originalBtnHTML;
+        alert("Erreur de connexion. Réessaie, ou écris-nous directement à clubefp.issht@gmail.com.");
+      });
   }
   function buildPages() {
     const t = window.efpT || (k => k);

@@ -45,13 +45,18 @@ index.html          → page d'accueil
 a-propos.html        → page "À propos"
 bibliotheque.html     → page bibliothèque (livres, TER)
 stages.html          → page lieux de stage
+evenements.html       → page événements (photos, annonce, publications)
 contact.html         → page contact
 
 ressources.js         → LISTE DES LIVRES/RESSOURCES (à modifier souvent)
 stages.js             → LISTE DES LIEUX DE STAGE (à modifier souvent)
+evenements.js          → ÉVÉNEMENTS PASSÉS + ANNONCE + PUBLICATIONS (à modifier souvent)
+events-photos/         → dossier des photos des événements
 
 theme-lang.js         → moteur du thème clair/sombre + langues FR/EN/AR
 theme.css             → styles du sélecteur de thème/langue
+chatbot.js             → moteur de l'assistant (bulle de chat en bas à droite)
+chatbot.css            → styles de l'assistant
 
 logo.png               → logo version blanche (mode sombre)
 logo-noir.png          → logo version noire (mode clair)
@@ -124,6 +129,62 @@ titre: { fr: "Mon livre", en: "My book", ar: "كتابي" },
 
 ---
 
+## 5bis. Gérer la page Événements
+
+Ouvre `evenements.js`. Trois listes à modifier :
+
+**Annoncer le prochain événement** — remplace `const UPCOMING = null;` par l'exemple fourni juste en dessous dans le fichier (copie-colle le bloc commenté et remplis-le). Remets `UPCOMING = null;` une fois l'événement passé.
+
+**Ajouter un événement passé** — copie un bloc dans `EVENTS` :
+```js
+{
+  nom: "Titre de l'événement",
+  date: "12/05/2026",
+  duree: "2 heures",
+  cible: "Étudiants du club",
+  participants: 30,
+  description: "Description courte de l'événement.",
+  photos: ["nom-photo1.jpg", "nom-photo2.jpg"],   // ajoute les images dans events-photos/
+},
+```
+
+**Relayer un post Instagram/Facebook** — copie un bloc dans `POSTS` :
+```js
+{
+  image: "capture-du-post.jpg",   // ajoute l'image dans events-photos/
+  legende: "Texte qui accompagne le post",
+  plateforme: "instagram",         // instagram | facebook | tiktok | linkedin
+  lien: "https://www.instagram.com/p/XXXXXXXXX/",
+  date: "12/05/2026"
+},
+```
+
+Pour ajouter des photos : uploade-les dans le dossier `events-photos/` sur GitHub (même méthode que pour les autres fichiers), puis référence leur nom exact dans `evenements.js`.
+
+---
+
+## 6bis. Modifier l'assistant chatbot
+
+Une petite bulle de chat apparaît en bas à droite du site. C'est un assistant simple à base de mots-clés (pas une vraie IA type ChatGPT — ça reste gratuit et fonctionne sans compte externe).
+
+Pour ajouter une nouvelle question/réponse : ouvre `chatbot.js`, trouve le tableau `KB` en haut, copie un bloc et modifie-le :
+
+```js
+{
+  keywords: ["mot1", "mot2", "synonyme"],   // mots qui déclenchent cette réponse
+  answer: {
+    fr: "Réponse en français",
+    en: "Answer in English",
+    ar: "الجواب بالعربية",
+  },
+  link: { url: "contact.html", label: { fr: "Nous contacter", en: "Contact us", ar: "اتصل بنا" } }  // optionnel
+},
+```
+
+Si tu veux un jour un vrai chatbot IA (qui comprend n'importe quelle question comme ChatGPT), il faudra passer par un service externe payant/à quota (ex: ChatbotGen, Voiceflow) car GitHub Pages ne permet pas d'héberger une clé API en sécurité — demande à l'IA qui reprend ce projet de t'aider à le brancher le moment venu.
+
+---
+
 ## 7. Modifier les textes fixes du site (menus, boutons, titres de pages)
 
 Ces textes ne sont pas dans les `.html` mais centralisés dans **`theme-lang.js`**, en haut du fichier, dans un dictionnaire `I18N` avec 3 blocs : `fr`, `en`, `ar`. Cherche la clé (ex. `"nav.accueil"`) et change le texte en face pour chaque langue.
@@ -140,25 +201,6 @@ python3 -m http.server 8000
 puis ouvre `http://localhost:8000` dans le navigateur.
 
 ---
-
-6bis. Modifier l'assistant chatbot
-
-Une petite bulle de chat apparaît en bas à droite du site. C'est un assistant simple à base de mots-clés (pas une vraie IA type ChatGPT — ça reste gratuit et fonctionne sans compte externe).
-
-Pour ajouter une nouvelle question/réponse : ouvre chatbot.js, trouve le tableau KB en haut, copie un bloc et modifie-le :
-
-js
-{
-  keywords: ["mot1", "mot2", "synonyme"],   // mots qui déclenchent cette réponse
-  answer: {
-    fr: "Réponse en français",
-    en: "Answer in English",
-    ar: "الجواب بالعربية",
-  },
-  link: { url: "contact.html", label: { fr: "Nous contacter", en: "Contact us", ar: "اتصل بنا" } }  // optionnel
-},
-
-Si tu veux un jour un vrai chatbot IA (qui comprend n'importe quelle question comme ChatGPT), il faudra passer par un service externe payant/à quota (ex: ChatbotGen, Voiceflow) car GitHub Pages ne permet pas d'héberger une clé API en sécurité — demande à l'IA qui reprend ce projet de t'aider à le brancher le moment venu.
 
 ## 9. Besoin d'aide ?
 

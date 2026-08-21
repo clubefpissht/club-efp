@@ -34,6 +34,7 @@
       "nav.cognitive": "Psychologie cognitive",
       "nav.ter": "TER Étudiants",
       "nav.stages": "Lieux de stage",
+      "nav.evenements": "Événements",
       "nav.contact": "Contact",
       "search.placeholder": "Rechercher...",
       "search.noresults": "Aucun résultat",
@@ -201,6 +202,31 @@
       "contact.submit": "Envoyer le message",
       "contact.success": "Message envoyé ! Nous vous répondrons dans les 48h.",
       "contact.alertMissing": "Veuillez remplir au minimum le prénom, l'email et le message.",
+
+      // ── CHATBOT ──
+      "chatbot.title": "Assistant EFP",
+      "chatbot.subtitle": "Pose-moi une question",
+      "chatbot.placeholder": "Pose ta question...",
+      "chatbot.welcome": "Salut ! 👋 Je suis l'assistant du Club EFP. Demande-moi comment rejoindre le club, trouver un stage, accéder à la bibliothèque, ou toute autre question !",
+      "chatbot.fallback": "Je n'ai pas bien saisi ta question. Essaie de reformuler, ou contacte directement l'équipe du club — ils te répondront avec plaisir !",
+      "chatbot.open": "Ouvrir l'assistant",
+
+      // ── ÉVÉNEMENTS ──
+      "events.eyebrow": "Vie du club",
+      "events.titleHtml": "Nos <em>Événements</em>",
+      "events.sub": "Retour sur l'année universitaire 2025-2026 : conférences, ateliers et actions solidaires du Club EFP.",
+      "events.upcomingLabel": "Prochain événement",
+      "events.upcomingEmpty": "Aucun événement n'est prévu pour l'instant — reviens bientôt, ou suis nos réseaux sociaux pour être informé en avant-première !",
+      "events.upcomingMore": "En savoir plus",
+      "events.sectionEvents": "Événements organisés",
+      "events.sectionContrib": "Autres contributions",
+      "events.sectionPosts": "Nos publications",
+      "events.postsEmpty": "Aucune publication relayée pour l'instant.",
+      "events.duree": "Durée",
+      "events.cible": "Public",
+      "events.participants": "Participants",
+      "events.viewPost": "Voir la publication",
+      "events.photoOf": "sur",
     },
 
     en: {
@@ -215,6 +241,7 @@
       "nav.cognitive": "Cognitive psychology",
       "nav.ter": "Student research papers",
       "nav.stages": "Internship placements",
+      "nav.evenements": "Events",
       "nav.contact": "Contact",
       "search.placeholder": "Search...",
       "search.noresults": "No results",
@@ -377,6 +404,31 @@
       "contact.submit": "Send message",
       "contact.success": "Message sent! We'll reply within 48h.",
       "contact.alertMissing": "Please fill in at least your first name, email and message.",
+
+      // ── CHATBOT ──
+      "chatbot.title": "EFP Assistant",
+      "chatbot.subtitle": "Ask me a question",
+      "chatbot.placeholder": "Ask your question...",
+      "chatbot.welcome": "Hi! 👋 I'm the Club EFP assistant. Ask me how to join the club, find an internship, access the library, or anything else!",
+      "chatbot.fallback": "I didn't quite understand your question. Try rephrasing, or contact the club team directly — they'll be happy to help!",
+      "chatbot.open": "Open the assistant",
+
+      // ── EVENTS ──
+      "events.eyebrow": "Club life",
+      "events.titleHtml": "Our <em>Events</em>",
+      "events.sub": "Looking back at the 2025-2026 academic year: talks, workshops and solidarity actions by Club EFP.",
+      "events.upcomingLabel": "Upcoming event",
+      "events.upcomingEmpty": "No event is planned for now — check back soon, or follow our social media to get early updates!",
+      "events.upcomingMore": "Learn more",
+      "events.sectionEvents": "Events organized",
+      "events.sectionContrib": "Other contributions",
+      "events.sectionPosts": "Our posts",
+      "events.postsEmpty": "No posts shared yet.",
+      "events.duree": "Duration",
+      "events.cible": "Audience",
+      "events.participants": "Participants",
+      "events.viewPost": "View post",
+      "events.photoOf": "of",
     },
 
     ar: {
@@ -391,6 +443,7 @@
       "nav.cognitive": "علم النفس المعرفي",
       "nav.ter": "أبحاث الطلبة",
       "nav.stages": "أماكن التربص",
+      "nav.evenements": "الفعاليات",
       "nav.contact": "اتصل بنا",
       "search.placeholder": "ابحث...",
       "search.noresults": "لا توجد نتائج",
@@ -553,6 +606,31 @@
       "contact.submit": "إرسال الرسالة",
       "contact.success": "تم إرسال الرسالة! سنرد عليك خلال 48 ساعة.",
       "contact.alertMissing": "يرجى تعبئة الاسم والبريد الإلكتروني والرسالة على الأقل.",
+
+      // ── CHATBOT ──
+      "chatbot.title": "مساعد EFP",
+      "chatbot.subtitle": "اطرح علي سؤالاً",
+      "chatbot.placeholder": "اكتب سؤالك...",
+      "chatbot.welcome": "مرحبًا! 👋 أنا مساعد نادي EFP. اسألني كيف تنضم إلى النادي، تجد تربصًا، تصل إلى المكتبة، أو أي سؤال آخر!",
+      "chatbot.fallback": "لم أفهم سؤالك جيدًا. حاول إعادة الصياغة، أو تواصل مباشرة مع فريق النادي — سيسعدهم مساعدتك!",
+      "chatbot.open": "فتح المساعد",
+
+      // ── الفعاليات ──
+      "events.eyebrow": "حياة النادي",
+      "events.titleHtml": "<em>فعالياتنا</em>",
+      "events.sub": "استعراض للسنة الجامعية 2025-2026: محاضرات، ورشات وأعمال تضامنية لنادي EFP.",
+      "events.upcomingLabel": "الفعالية القادمة",
+      "events.upcomingEmpty": "لا توجد فعالية مبرمجة حاليًا — عد قريبًا، أو تابع صفحاتنا على وسائل التواصل الاجتماعي لتكون أول من يعلم!",
+      "events.upcomingMore": "اعرف أكثر",
+      "events.sectionEvents": "الفعاليات المنظمة",
+      "events.sectionContrib": "مساهمات أخرى",
+      "events.sectionPosts": "منشوراتنا",
+      "events.postsEmpty": "لا توجد منشورات بعد.",
+      "events.duree": "المدة",
+      "events.cible": "الفئة المستهدفة",
+      "events.participants": "المشاركون",
+      "events.viewPost": "عرض المنشور",
+      "events.photoOf": "من",
     },
   };
 
