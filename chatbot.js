@@ -215,7 +215,6 @@
     });
 
     window.addEventListener('efp-lang-changed', () => {
-      if (window.efpApplyI18n) window.efpApplyI18n();
       renderQuick();
     });
   }
