@@ -129,7 +129,7 @@ titre: { fr: "Mon livre", en: "My book", ar: "كتابي" },
 
 ---
 
-## 5bis. Gérer la page Événements
+## 5. Gérer la page Événements
 
 Ouvre `evenements.js`. Trois listes à modifier :
 
