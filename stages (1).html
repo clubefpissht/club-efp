@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Club EFP — Lieux de stage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --r: #C8000A; --r-light: #ff2a2a; --r-dark: #8B0007;
+      --bg: #0D0D0D; --bg2: #161616; --bg3: #1E1E1E;
+      --border: rgba(200,0,10,0.2); --border2: rgba(255,255,255,0.08);
+      --text: #F0EDE8; --muted: rgba(240,237,232,0.52); --muted2: rgba(240,237,232,0.28);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(22,22,22,0.96); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+    .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 13.5px; padding: 6px 13px; border-radius: 7px; transition: all .2s; white-space: nowrap; }
+    .nav-links a:hover { color: #fff; background: rgba(200,0,10,0.1); }
+    .nav-links a.active { color: var(--r-light); background: rgba(200,0,10,0.13); font-weight: 600; }
+    .dropdown { position: relative; }
+    .dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; min-width: 220px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 200; }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.04); transition: all .15s; }
+    .dropdown-menu a:last-child { border-bottom: none; }
+    .dropdown-menu a:hover { color: #fff; background: rgba(200,0,10,0.1); }
+    .srch-wrap { position: relative; }
+    .srch-box { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); border: 1px solid var(--border2); border-radius: 8px; padding: 7px 13px; min-width: 200px; transition: all .2s; }
+    .srch-box:focus-within { border-color: var(--r); background: rgba(200,0,10,0.07); }
+    .srch-box i { color: var(--muted2); font-size: 15px; }
+    .srch-box input { background: none; border: none; outline: none; color: #fff; font-family: 'Cairo', sans-serif; font-size: 13.5px; width: 100%; }
+    .srch-box input::placeholder { color: var(--muted2); }
+    #sres { display: none; position: absolute; top: calc(100% + 6px); right: 0; width: 280px; background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.6); }
+    .sitem { padding: 10px 14px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.04); transition: background .15s; }
+    .sitem:last-child { border-bottom: none; }
+    .sitem:hover { background: rgba(200,0,10,0.1); }
+    .sitem-t { font-size: 13px; font-weight: 600; color: #fff; }
+    .sitem-s { font-size: 11px; color: var(--r-light); margin-top: 2px; }
+    .no-res { padding: 12px 14px; font-size: 13px; color: var(--muted); text-align: center; }
+
+    .hero { padding: 64px 2rem 52px; text-align: center; border-bottom: 1px solid var(--border2); position: relative; overflow: hidden; }
+    .hero::after { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(200,0,10,0.08), transparent 70%); pointer-events: none; }
+    .hero > * { position: relative; z-index: 1; }
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--r-light); margin-bottom: 16px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4.5vw, 46px); font-weight: 600; color: #fff; margin-bottom: 14px; line-height: 1.18; }
+    .hero h1 em { color: var(--r-light); font-style: italic; }
+    .hero-sub { font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto 16px; line-height: 1.8; }
+    .hero-count { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,0,10,0.08); border: 1px solid var(--border); border-radius: 100px; padding: 6px 16px; font-size: 13px; color: var(--r-light); }
+
+    /* SHEETS BANNER */
+    .sheets-banner {
+      background: rgba(66,133,244,0.07);
+      border: 1px solid rgba(66,133,244,0.2);
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .sheets-banner-icon { width: 36px; height: 36px; flex-shrink: 0; }
+    .sheets-banner-text { flex: 1; min-width: 200px; }
+    .sheets-banner-text strong { display: block; font-size: 13.5px; color: #fff; margin-bottom: 2px; }
+    .sheets-banner-text span { font-size: 12px; color: var(--muted); }
+    .sheets-btn { display: inline-flex; align-items: center; gap: 6px; background: rgba(66,133,244,0.12); border: 1px solid rgba(66,133,244,0.3); border-radius: 8px; padding: 7px 14px; font-size: 12.5px; color: #7eb3ff; text-decoration: none; transition: all .2s; white-space: nowrap; font-family: 'Cairo', sans-serif; cursor: pointer; }
+    .sheets-btn:hover { background: rgba(66,133,244,0.2); color: #fff; }
+
+    .content { max-width: 960px; margin: 0 auto; padding: 3rem 2rem; }
+    .sec-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 1.5rem; }
+    .sec-title span { color: var(--r-light); }
+    .divider { height: 1px; background: var(--border2); margin: 2.5rem 0; }
+
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; align-items: center; }
+    .filter-btn { padding: 7px 16px; border-radius: 100px; border: 1px solid var(--border2); background: transparent; color: var(--muted); font-family: 'Cairo', sans-serif; font-size: 13px; cursor: pointer; transition: all .2s; }
+    .filter-btn:hover { border-color: var(--border); color: #fff; }
+    .filter-btn.on { background: rgba(200,0,10,0.12); border-color: var(--border); color: var(--r-light); font-weight: 600; }
+    .filter-count { font-size: 12px; color: var(--muted2); margin-left: auto; }
+
+    /* LOADING */
+    .loading-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 2rem; gap: 16px; }
+    .spinner { width: 36px; height: 36px; border: 3px solid var(--border2); border-top-color: var(--r-light); border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-state p { font-size: 14px; color: var(--muted); }
+
+    /* ERROR */
+    .error-state { background: rgba(200,0,10,0.05); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; text-align: center; }
+    .error-state i { font-size: 32px; color: var(--r-light); display: block; margin-bottom: 10px; }
+    .error-state h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+    .error-state p { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+    .error-state code { background: var(--bg3); border: 1px solid var(--border2); border-radius: 6px; padding: 2px 8px; font-size: 12px; color: var(--r-light); }
+    .btn-retry { display: inline-flex; align-items: center; gap: 6px; background: var(--r); color: #fff; font-family: 'Cairo', sans-serif; font-size: 13px; font-weight: 600; padding: 9px 18px; border-radius: 8px; border: none; cursor: pointer; transition: all .2s; }
+    .btn-retry:hover { background: var(--r-dark); }
+
+    .stages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .stage-card { background: var(--bg2); border: 1px solid var(--border2); border-radius: 14px; padding: 1.4rem; transition: all .25s; }
+    .stage-card:hover { border-color: var(--border); background: rgba(200,0,10,0.04); transform: translateY(-2px); }
+    .stage-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+    .stage-icon { width: 42px; height: 42px; border-radius: 10px; background: rgba(200,0,10,0.1); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .stage-icon i { color: var(--r-light); font-size: 20px; }
+    .stage-badge { font-size: 11px; background: rgba(200,0,10,0.08); border: 1px solid var(--border); border-radius: 100px; padding: 3px 10px; color: var(--r-light); white-space: nowrap; }
+    .stage-name { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .stage-type { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; }
+    .stage-info { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+    .stage-info-row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
+    .stage-info-row i { color: var(--r-light); font-size: 14px; flex-shrink: 0; }
+    .stage-footer { border-top: 1px solid var(--border2); padding-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .stage-contact { font-size: 12px; color: var(--muted2); flex: 1; }
+    .stage-map-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--r-light); text-decoration: none; transition: opacity .2s; white-space: nowrap; }
+    .stage-map-link:hover { opacity: .75; }
+    .empty-grid { background: var(--bg2); border: 1px dashed var(--border2); border-radius: 12px; padding: 2rem; text-align: center; color: var(--muted2); font-size: 13.5px; grid-column: 1/-1; }
+
+    .propose-box { background: var(--bg2); border: 1px solid var(--border2); border-radius: 14px; padding: 2rem; text-align: center; margin-top: 2.5rem; }
+    .propose-box h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; margin-bottom: 10px; }
+    .propose-box p { font-size: 14px; color: var(--muted); max-width: 420px; margin: 0 auto 20px; line-height: 1.7; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--r); color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; padding: 11px 22px; border-radius: 9px; transition: all .2s; border: none; cursor: pointer; font-family: 'Cairo', sans-serif; }
+    .btn-primary:hover { background: var(--r-dark); transform: translateY(-1px); }
+
+    /* SETUP GUIDE */
+    .setup-guide { background: var(--bg2); border: 1px solid var(--border2); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+    .setup-guide h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+    .setup-guide h3 i { color: var(--r-light); }
+    .setup-steps { display: flex; flex-direction: column; gap: 12px; }
+    .setup-step { display: flex; gap: 12px; align-items: flex-start; }
+    .step-num { width: 26px; height: 26px; border-radius: 50%; background: rgba(200,0,10,0.12); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--r-light); flex-shrink: 0; margin-top: 1px; }
+    .step-text { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+    .step-text strong { color: #fff; display: block; margin-bottom: 3px; }
+    .step-text code { background: var(--bg3); border: 1px solid var(--border2); border-radius: 5px; padding: 1px 7px; font-size: 12px; color: var(--r-light); }
+
+    footer { background: var(--bg2); border-top: 1px solid var(--border2); padding: 2rem; text-align: center; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .footer-logo span { color: var(--r-light); }
+    .footer-ar { font-size: 13px; color: var(--muted2); direction: rtl; margin-bottom: 14px; }
+    .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 12px; }
+    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--r-light); }
+    .footer-copy { font-size: 12px; color: var(--muted2); }
+    @media (max-width: 700px) { .stages-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <img src="logo.png" alt="Logo Club EFP" style="height:44px;width:auto;display:block">
+    Club EFP
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="a-propos.html">À propos</a>
+    <div class="dropdown">
+      <a href="bibliotheque.html">Bibliothèque ▾</a>
+      <div class="dropdown-menu">
+        <a href="bibliotheque.html#neuro">Neuropsychologie</a>
+        <a href="bibliotheque.html#clinique">Psychologie clinique</a>
+        <a href="bibliotheque.html#dev">Psychologie du développement</a>
+        <a href="bibliotheque.html#travail">Psychologie du travail</a>
+        <a href="bibliotheque.html#cognitive">Psychologie cognitive</a>
+        <a href="bibliotheque.html#ter">TER Étudiants</a>
+      </div>
+    </div>
+    <a href="stages.html" class="active">Lieux de stage</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="srch-wrap">
+    <div class="srch-box">
+      <i class="ti ti-search" aria-hidden="true"></i>
+      <input type="text" id="si" placeholder="Rechercher..." autocomplete="off" />
+    </div>
+    <div id="sres"></div>
+  </div>
+</nav>
+
+<div class="hero">
+  <img src="logo.png" alt="Logo Club EFP" style="width:120px;height:auto;display:block;margin:0 auto 16px">
+  <p class="eyebrow">Opportunités professionnelles</p>
+  <h1>Lieux de <em>stage</em></h1>
+  <p class="hero-sub">Découvrez les structures partenaires pour effectuer votre stage en psychologie.</p>
+  <div class="hero-count"><i class="ti ti-briefcase" aria-hidden="true"></i> <span id="totalCount">—</span> lieux disponibles</div>
+</div>
+
+<div class="content">
+
+  <!-- BANNIÈRE GOOGLE SHEETS -->
+  <div class="sheets-banner">
+    <!-- Icône Google Sheets SVG inline -->
+    <svg class="sheets-banner-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#43a047" d="M37,45H11c-1.657,0-3-1.343-3-3V6c0-1.657,1.343-3,3-3h19l10,10v29C40,43.657,38.657,45,37,45z"/>
+      <path fill="#c8e6c9" d="M40,13H30V3L40,13z"/>
+      <path fill="#2e7d32" d="M30,3l10,10h-10V3z"/>
+      <path fill="#fff" d="M15,24h18v2H15V24z M15,28h12v2H15V28z M15,32h18v2H15V32z M15,20h18v2H15V20z"/>
+    </svg>
+    <div class="sheets-banner-text">
+      <strong>Données chargées depuis Google Sheets</strong>
+      <span>Les lieux de stage sont gérés dans une feuille de calcul — aucune modification du code n'est nécessaire.</span>
+    </div>
+    <a class="sheets-btn" id="sheetsLink" href="#" target="_blank" rel="noopener">
+      <i class="ti ti-table" aria-hidden="true"></i> Ouvrir le Google Sheets
+    </a>
+    <button class="sheets-btn" onclick="loadStages()">
+      <i class="ti ti-refresh" aria-hidden="true"></i> Actualiser
+    </button>
+  </div>
+
+  <h2 class="sec-title">Filtrer par <span>domaine</span></h2>
+  <div class="filters" id="filterBar">
+    <button class="filter-btn on" onclick="filter('tous', this)">Tous</button>
+    <span class="filter-count" id="filterCount"></span>
+  </div>
+
+  <!-- ZONE PRINCIPALE -->
+  <div id="mainZone">
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Chargement des lieux de stage…</p>
+    </div>
+  </div>
+
+  <div class="propose-box">
+    <h3>Vous connaissez un lieu de stage ?</h3>
+    <p>Si vous avez effectué un stage ou connaissez une structure qui accueille des étudiants en psychologie, partagez-le avec la communauté EFP.</p>
+    <a href="contact.html" class="btn-primary"><i class="ti ti-plus" aria-hidden="true"></i> Proposer un lieu</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Club <span>EFP</span></div>
+  <p class="footer-ar">نادي علم النفس — إبن شرف</p>
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="bibliotheque.html">Bibliothèque</a>
+    <a href="stages.html">Lieux de stage</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p class="footer-copy">© 2025 Club EFP · Empreinte des Futurs Psychologues</p>
+</footer>
+
+<script>
+// ════════════════════════════════════════════════════════════
+//  ⚙️  CONFIGURATION — À MODIFIER UNE SEULE FOIS
+//
+//  1. Ouvre ton Google Sheets
+//  2. Fichier → Partager → "Publier sur le web" → CSV → Publier
+//  3. Copie l'URL obtenue et colle-la ci-dessous
+//  4. Colle aussi l'URL normale du Sheets pour le bouton "Ouvrir"
+// ════════════════════════════════════════════════════════════
+const SHEETS_CSV_URL = "COLLE_ICI_L_URL_CSV_DE_PUBLICATION";
+const SHEETS_VIEW_URL = "COLLE_ICI_L_URL_NORMALE_DU_SHEETS";
+
+// ── Colonnes attendues dans le Sheets (ligne 1 = en-têtes) ──
+// nom | type | categorie | ville | duree | niveau | contact | lien_maps | icon
+// Les colonnes doivent être EXACTEMENT dans cet ordre.
+// "icon" est optionnel — si vide, une icône sera choisie automatiquement.
+
+// ════════════════════════════════════════════════════════════
+//  ICÔNES AUTO PAR CATÉGORIE
+// ════════════════════════════════════════════════════════════
+const ICONS_AUTO = {
+  clinique:   'ti-building-hospital',
+  scolaire:   'ti-school',
+  travail:    'ti-building-skyscraper',
+  social:     'ti-users-group',
+  recherche:  'ti-microscope',
+  default:    'ti-briefcase'
+};
+
+const LABELS_CAT = {
+  clinique: 'Clinique',
+  scolaire: 'Scolaire',
+  travail:  'Travail & RH',
+  social:   'Social',
+  recherche:'Recherche'
+};
+
+// ════════════════════════════════════════════════════════════
+//  DONNÉES CHARGÉES
+// ════════════════════════════════════════════════════════════
+let ALL_STAGES = [];
+let CURRENT_CAT = 'tous';
+
+// ════════════════════════════════════════════════════════════
+//  CHARGEMENT CSV DEPUIS GOOGLE SHEETS
+// ════════════════════════════════════════════════════════════
+async function loadStages() {
+  const zone = document.getElementById('mainZone');
+  zone.innerHTML = `<div class="loading-state"><div class="spinner"></div><p>Chargement des lieux de stage…</p></div>`;
+
+  // Lien "Ouvrir le Sheets"
+  if (SHEETS_VIEW_URL && SHEETS_VIEW_URL !== "COLLE_ICI_L_URL_NORMALE_DU_SHEETS") {
+    document.getElementById('sheetsLink').href = SHEETS_VIEW_URL;
+  }
+
+  // Si l'URL n'est pas encore configurée → guide de configuration
+  if (!SHEETS_CSV_URL || SHEETS_CSV_URL === "COLLE_ICI_L_URL_CSV_DE_PUBLICATION") {
+    showSetupGuide(zone);
+    return;
+  }
+
+  try {
+    const res = await fetch(SHEETS_CSV_URL);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const csv = await res.text();
+    ALL_STAGES = parseCSV(csv);
+    if (!ALL_STAGES.length) throw new Error("Le tableau est vide");
+    buildFilterBar();
+    buildCards(ALL_STAGES);
+    document.getElementById('totalCount').textContent = ALL_STAGES.length;
+  } catch(err) {
+    showError(zone, err.message);
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+//  PARSER CSV SIMPLE (gère les guillemets)
+// ════════════════════════════════════════════════════════════
+function parseCSV(text) {
+  const lines = text.trim().split('\n').map(l => l.trim()).filter(l => l);
+  if (lines.length < 2) return [];
+  // Ignore ligne 1 (en-têtes)
+  return lines.slice(1).map(line => {
+    const cols = splitCSVLine(line);
+    return {
+      nom:        cols[0] || '',
+      type:       cols[1] || '',
+      categorie:  (cols[2] || 'default').toLowerCase().trim(),
+      ville:      cols[3] || '',
+      duree:      cols[4] || '',
+      niveau:     cols[5] || '',
+      contact:    cols[6] || '',
+      lien_maps:  cols[7] || '',
+      icon:       cols[8] ? cols[8].trim() : ''
+    };
+  }).filter(s => s.nom); // ignore les lignes vides
+}
+
+function splitCSVLine(line) {
+  const result = [];
+  let cur = '', inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    if (line[i] === '"') { inQ = !inQ; }
+    else if (line[i] === ',' && !inQ) { result.push(cur.trim()); cur = ''; }
+    else { cur += line[i]; }
+  }
+  result.push(cur.trim());
+  return result;
+}
+
+// ════════════════════════════════════════════════════════════
+//  FILTRES DYNAMIQUES
+// ════════════════════════════════════════════════════════════
+function buildFilterBar() {
+  const bar = document.getElementById('filterBar');
+  const cats = [...new Set(ALL_STAGES.map(s => s.categorie).filter(c => c && c !== 'default'))];
+  const countSpan = document.getElementById('filterCount');
+
+  // Vider les anciens boutons sauf "Tous"
+  bar.innerHTML = `<button class="filter-btn on" onclick="filter('tous', this)">Tous</button>`;
+  cats.forEach(cat => {
+    const label = LABELS_CAT[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1));
+    bar.innerHTML += `<button class="filter-btn" onclick="filter('${cat}', this)">${label}</button>`;
+  });
+  bar.appendChild(countSpan);
+}
+
+// ════════════════════════════════════════════════════════════
+//  AFFICHAGE DES CARTES
+// ════════════════════════════════════════════════════════════
+function buildCards(liste) {
+  const zone = document.getElementById('mainZone');
+  document.getElementById('filterCount').textContent =
+    liste.length + ' résultat' + (liste.length !== 1 ? 's' : '');
+
+  if (!liste.length) {
+    zone.innerHTML = `<div class="stages-grid"><div class="empty-grid">Aucun lieu de stage pour ce domaine.</div></div>`;
+    return;
+  }
+
+  zone.innerHTML = `<div class="stages-grid">${liste.map(s => {
+    const icon = s.icon || ICONS_AUTO[s.categorie] || ICONS_AUTO.default;
+    const catLabel = LABELS_CAT[s.categorie] || s.categorie;
+    const mapsLink = s.lien_maps
+      ? `<a href="${s.lien_maps}" target="_blank" class="stage-map-link" rel="noopener"><i class="ti ti-map-pin" aria-hidden="true"></i> Carte</a>`
+      : '';
+    return `
+    <div class="stage-card">
+      <div class="stage-header">
+        <div class="stage-icon"><i class="ti ${icon}" aria-hidden="true"></i></div>
+        <span class="stage-badge">${catLabel}</span>
+      </div>
+      <div class="stage-name">${s.nom}</div>
+      <div class="stage-type">${s.type}</div>
+      <div class="stage-info">
+        <div class="stage-info-row"><i class="ti ti-map-pin" aria-hidden="true"></i> ${s.ville}</div>
+        <div class="stage-info-row"><i class="ti ti-clock" aria-hidden="true"></i> ${s.duree}</div>
+        <div class="stage-info-row"><i class="ti ti-school" aria-hidden="true"></i> ${s.niveau}</div>
+      </div>
+      <div class="stage-footer">
+        <span class="stage-contact">${s.contact}</span>
+        ${mapsLink}
+      </div>
+    </div>`}).join('')}</div>`;
+}
+
+function filter(cat, btn) {
+  CURRENT_CAT = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  buildCards(cat === 'tous' ? ALL_STAGES : ALL_STAGES.filter(s => s.categorie === cat));
+}
+
+// ════════════════════════════════════════════════════════════
+//  GUIDE DE CONFIGURATION (première utilisation)
+// ════════════════════════════════════════════════════════════
+function showSetupGuide(zone) {
+  zone.innerHTML = `
+  <div class="setup-guide">
+    <h3><i class="ti ti-settings" aria-hidden="true"></i> Configuration du Google Sheets — 4 étapes rapides</h3>
+    <div class="setup-steps">
+      <div class="setup-step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Crée un Google Sheets</strong>
+          Va sur <a href="https://sheets.new" target="_blank" style="color:var(--r-light)">sheets.new</a> et nomme-le "Stages Club EFP".
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Structure la ligne 1 comme ceci (en-têtes)</strong>
+          <code>nom</code> · <code>type</code> · <code>categorie</code> · <code>ville</code> · <code>duree</code> · <code>niveau</code> · <code>contact</code> · <code>lien_maps</code> · <code>icon</code><br>
+          <span style="font-size:12px;margin-top:4px;display:block">Les catégories valides : <code>clinique</code> · <code>scolaire</code> · <code>travail</code> · <code>social</code> · <code>recherche</code></span>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Publie le Sheets en CSV</strong>
+          Fichier → Partager → <em>Publier sur le web</em> → choisir <code>Feuille 1</code> + format <code>CSV</code> → Publier → copie l'URL.
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Colle l'URL dans <code>stages.html</code></strong>
+          Ouvre le fichier, trouve la ligne <code>const SHEETS_CSV_URL = "..."</code> et remplace par ton URL CSV.
+          Fais pareil pour <code>SHEETS_VIEW_URL</code> avec l'URL normale du Sheets.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="stages-grid">
+    <div class="empty-grid">⚙️ En attente de la configuration du Google Sheets — suis le guide ci-dessus !</div>
+  </div>`;
+  document.getElementById('totalCount').textContent = '0';
+}
+
+// ════════════════════════════════════════════════════════════
+//  AFFICHAGE D'ERREUR
+// ════════════════════════════════════════════════════════════
+function showError(zone, msg) {
+  zone.innerHTML = `
+  <div class="error-state">
+    <i class="ti ti-wifi-off" aria-hidden="true"></i>
+    <h3>Impossible de charger les données</h3>
+    <p>Vérifie que le Google Sheets est bien publié en accès public et que l'URL CSV est correcte.<br>
+    Erreur technique : <code>${msg}</code></p>
+    <button class="btn-retry" onclick="loadStages()"><i class="ti ti-refresh" aria-hidden="true"></i> Réessayer</button>
+  </div>`;
+  document.getElementById('totalCount').textContent = '!';
+}
+
+// ════════════════════════════════════════════════════════════
+//  RECHERCHE
+// ════════════════════════════════════════════════════════════
+const NAV_PAGES = [
+  { t: "Accueil", s: "Page principale", url: "index.html", k: ["accueil"] },
+  { t: "Bibliothèque", s: "Ressources", url: "bibliotheque.html", k: ["bibliotheque", "livre"] },
+  { t: "Lieux de stage", s: "Stages", url: "stages.html", k: ["stage", "lieu"] },
+  { t: "Contact", s: "Contact", url: "contact.html", k: ["contact"] },
+];
+function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+const inp = document.getElementById('si'), box = document.getElementById('sres');
+inp.addEventListener('input', () => {
+  const q = norm(inp.value.trim());
+  if (!q) { box.style.display = 'none'; return; }
+  const stagePgs = ALL_STAGES.map(s => ({ t: s.nom, s: "Lieu de stage", url: "stages.html", k: [s.type.toLowerCase(), s.categorie, s.ville.toLowerCase()] }));
+  const hits = [...NAV_PAGES, ...stagePgs].filter(p => norm(p.t).includes(q) || p.k.some(k => norm(k).includes(q))).slice(0, 8);
+  if (!hits.length) { box.innerHTML = '<div class="no-res">Aucun résultat</div>'; box.style.display = 'block'; return; }
+  box.innerHTML = hits.map(h => `<div class="sitem" onclick="location.href='${h.url}'"><div class="sitem-t">${h.t}</div><div class="sitem-s">${h.s}</div></div>`).join('');
+  box.style.display = 'block';
+});
+document.addEventListener('click', e => { if (!e.target.closest('.srch-wrap')) box.style.display = 'none'; });
+
+// ── LANCEMENT ──
+loadStages();
+</script>
+</body>
+</html>
