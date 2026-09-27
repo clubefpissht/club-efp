@@ -295,12 +295,12 @@ async function loadStages() {
   zone.innerHTML = `<div class="loading-state"><div class="spinner"></div><p>Chargement des lieux de stage…</p></div>`;
 
   // Lien "Ouvrir le Sheets"
-  if (SHEETS_VIEW_URL && SHEETS_VIEW_URL !== "COLLE_ICI_L_URL_NORMALE_DU_SHEETS") {
+  if (SHEETS_VIEW_URL && SHEETS_VIEW_URL !== "https://docs.google.com/spreadsheets/d/1wPLU3VsFFynj3q8vl6aLL5gUuEsr5lntGZjP2uhBTZ4/edit?gid=0#gid=0") {
     document.getElementById('sheetsLink').href = SHEETS_VIEW_URL;
   }
 
   // Si l'URL n'est pas encore configurée → guide de configuration
-  if (!SHEETS_CSV_URL || SHEETS_CSV_URL === "COLLE_ICI_L_URL_CSV_DE_PUBLICATION") {
+  if (!SHEETS_CSV_URL || SHEETS_CSV_URL === https://docs.google.com/spreadsheets/d/e/2PACX-1vShif6u2AUpqZAXZnPLbQkoq0H1dw8-QTA2nsJXv_o6YjEDngGbvR6kvAoJq9E7wGBUKBJW7NPeJuaB/pub?gid=0&single=true&output=csv) {
     showSetupGuide(zone);
     return;
   }
